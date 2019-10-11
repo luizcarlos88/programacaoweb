@@ -1,0 +1,29 @@
+package dev.fujioka.java.avancado.web.repository;
+
+import dev.fujioka.java.avancado.web.domain.Product;
+import dev.fujioka.java.avancado.web.domain.User;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.PathVariable;
+
+import java.util.List;
+
+@Repository
+public interface UserRepository
+        extends JpaRepository<User, Long> {
+
+    public List<User> findUserByFirstName(@Param("firstName") String firstName);
+
+    public List<User> findUserByLastName(@Param("lastName") String lastName);
+
+    public List<User> findUserByLogin(@Param("login") String login);
+
+    public List<User> findUserByFirstNameAndLastName(
+            @Param("firstName") String firstName, @Param("lastName") String lastName);
+
+    public List<User> findUserById(@Param("id") Long id);
+
+    public List<User> findUserByLoginAndFirstName(
+            @Param("login") String login, @Param("firstName") String firstName);
+}
